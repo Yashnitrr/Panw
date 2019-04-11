@@ -1,7 +1,7 @@
-def  VERSION = "0.0.env.${ghprbPullId}"
-def  pyflaskimageTag = "gcr.io/env.${PROJECT_ID}/apache:${VERSION}"
-def  graphqlimageTag = "gcr.io/env.${PROJECT_ID}/catalog:${VERSION}"
-def  expressimageTag = "gcr.io/env.${PROJECT_ID}/customer:${VERSION}"
+def  VERSION = "0.0"
+def  pyflaskimageTag = "gcr.io/palo-alto-networks-234507/apache:${VERSION}"
+def  graphqlimageTag = "gcr.io/palo-alto-networks-234507/catalog:${VERSION}"
+def  expressimageTag = "gcr.io/palo-alto-networks-234507/customer:${VERSION}"
 
 pipeline {
     agent any
