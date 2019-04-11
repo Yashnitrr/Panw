@@ -4,6 +4,7 @@ def  graphqlimageTag = "gcr.io/env.${PROJECT_ID}/catalog:${VERSION}"
 def  expressimageTag = "gcr.io/env.${PROJECT_ID}/customer:${VERSION}"
 
 pipeline {
+    agent any
     stages {
     stage('Setup') {
       steps {
