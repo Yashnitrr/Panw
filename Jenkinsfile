@@ -12,16 +12,14 @@ pipeline {
       checkout scm
       }
     }
-    stage('Build Images') {
+    stage('Build Docker Images') {
       steps {
-          container('gcloud') {
               //Build python flask application image
-              sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${pyflaskimageTag} ./microservices/pyflask"
+              sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/pyflask -t ${pyflaskimageTag}"
               //Build graphql image
-              sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${graphqlimageTag} ./microservices/node-graphql"
+              sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/node-graphql -t ${graphqlimageTag}"
               //Build customer image
-              sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${expressimageTag} ./microservices/node-express"
-          }
+              sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/node-express -t ${expressimageTag}"
       }
     }
   }
