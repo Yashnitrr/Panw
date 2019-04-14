@@ -22,6 +22,12 @@ pipeline {
               sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/node-express -t ${expressimageTag}"
       }
     }
+    stage('Push Docker Image to GCR'){
+      steps {
+              sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${pyflaskimageTag} "
+              sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${graphqlimageTag}"
+              sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${expressimageTag}"
+       }
+      }
+    }
   }
-}
-
