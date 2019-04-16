@@ -3,6 +3,7 @@ def  PROJECT_ID= "palo-alto-networks-234507"
 def  pyflaskimageTag = "gcr.io/${PROJECT_ID}/cicd/pyflask:${VERSION}"
 def  graphqlimageTag = "gcr.io/${PROJECT_ID}/cicd/graphql:${VERSION}"
 def  expressimageTag = "gcr.io/${PROJECT_ID}/cicd/express:${VERSION}"
+def  namespace = "palo-alto-demo"
 
 pipeline {
     agent any
@@ -29,6 +30,18 @@ pipeline {
               sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${graphqlimageTag}"
               sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${expressimageTag}"
        }
+      }
+    stage('Deploy on GKE'){
+      steps {
+              sh -c 'PYTHONBUFFERED=1 openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj "/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com"'
+              sh "sudo su"
+              sh "PYTHONBUFFERED=1 gcloud container clusters get-credentials cicd-panw --zone us-west1-b --project palo-alto-networks-234507"
+              sh "PYTHONBUFFERED=1 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value core/account)"
+              sh "PYTHONBUFFERED=1 kubectl create -n palo-alto-demo secret tls istio-ingressgateway-certs --key /etc/tls.key --cert /etc/tls.crt"
+              sh "PYTHONBUFFERED=1 kubectl label namespace default istio-injection=enabled"
+              sh "PYTHONBUFFERED=1 kubectl label namespace palo-alto-demo istio-injection=enabled"
+              sh "PYTHONBUFFERED=1 kubectl --namespace=${namespace} apply -f deployment.yaml"
+        }
       }
     }
   }
