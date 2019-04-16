@@ -33,7 +33,7 @@ pipeline {
       }
     stage('Deploy on GKE'){
       steps {
-              sh -c 'PYTHONBUFFERED=1 openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj "/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com"'
+              sh "PYTHONBUFFERED=1 openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj '/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com'"
               sh "sudo su"
               sh "PYTHONBUFFERED=1 gcloud container clusters get-credentials cicd-panw --zone us-west1-b --project palo-alto-networks-234507"
               sh "PYTHONBUFFERED=1 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value core/account)"
