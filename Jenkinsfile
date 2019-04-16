@@ -41,7 +41,7 @@ pipeline {
               sh "PYTHONBUFFERED=1 sudo kubectl create -n palo-alto-demo secret tls istio-ingressgateway-certs --key /etc/tls.key --cert /etc/tls.crt"
               sh "PYTHONBUFFERED=1 sudo kubectl label namespace default istio-injection=enabled"
               sh "PYTHONBUFFERED=1 sudo kubectl label namespace palo-alto-demo istio-injection=enabled"
-              sh "PYTHONBUFFERED=1 sudo kubectl --namespace=${namespace} apply -f deployment.yaml"
+              sh "PYTHONBUFFERED=1 sudo kubectl apply -f deployment.yaml"
         }
       }
     }
