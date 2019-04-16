@@ -1,4 +1,4 @@
-def  VERSION = "v1"
+def  VERSION = "v2"
 def  PROJECT_ID= "palo-alto-networks-234507"
 def  pyflaskimageTag = "gcr.io/${PROJECT_ID}/cicd/pyflask:${VERSION}"
 def  graphqlimageTag = "gcr.io/${PROJECT_ID}/cicd/graphql:${VERSION}"
