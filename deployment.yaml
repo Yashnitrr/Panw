@@ -129,9 +129,9 @@ spec:
     spec:
       serviceAccount: ro-istio-rbac
       containers:
-      - image: gcr.io/${project_id}/graphql:v1
+      - image: gcr.io/palo-alto-networks-234507/cicd/graphql:v2
         name: graphql
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 4000
 
@@ -159,9 +159,9 @@ spec:
     spec:
       serviceAccount: ro-serviceaccount
       containers:
-      - image: gcr.io/${project_id}/express:v1
+      - image: gcr.io/palo-alto-networks-234507/cicd/express:v2
         name: express
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 ---
@@ -220,8 +220,8 @@ spec:
     - "*"
     tls:
       mode: SIMPLE
-      serverCertificate: /etc/istio/ilbgateway-certs/tls.crt
-      privateKey: /etc/istio/ilbgateway-certs/tls.key
+      serverCertificate: /etc/tls.crt
+      privateKey: /etc/tls.key
 ---
 #Redirect '/graphql' endpoint from the
 #gateway to graphql service on port 4000
