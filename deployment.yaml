@@ -129,7 +129,7 @@ spec:
     spec:
       serviceAccount: ro-istio-rbac
       containers:
-      - image: gcr.io/palo-alto-networks-234507/cicd/graphql:v2
+      - image: gcr.io/palo-alto-networks-234507/cicd/graphql:${env.BUILD_NUMBER}
         name: graphql
         imagePullPolicy: Always
         ports:
@@ -159,7 +159,7 @@ spec:
     spec:
       serviceAccount: ro-serviceaccount
       containers:
-      - image: gcr.io/palo-alto-networks-234507/cicd/express:v2
+      - image: gcr.io/palo-alto-networks-234507/cicd/express:${env.BUILD_NUMBER}
         name: express
         imagePullPolicy: Always
         ports:
