@@ -1,5 +1,5 @@
 def  VERSION = "${env.BUILD_NUMBER}"
-//def  PROJECT_ID= "palo-alto-networks-234507"
+def  PROJECT_ID= "palo-alto-networks-234507"
 def  pyflaskimageTag = "gcr.io/${PROJECT_ID}/cicd/pyflask:${VERSION}"
 def  graphqlimageTag = "gcr.io/${PROJECT_ID}/cicd/graphql:${VERSION}"
 def  expressimageTag = "gcr.io/${PROJECT_ID}/cicd/express:${VERSION}"
