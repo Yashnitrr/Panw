@@ -1,6 +1,6 @@
 def  VERSION = "v1"
 def  PROJECT_ID= "palo-alto-networks-234507"
-def  pyflaskimageTag = "gcr.io/${PROJECT_ID}/cicd/pyflask:${VERSION}"
+def  sfdcimageTag = "gcr.io/${PROJECT_ID}/cicd/sfdc:${VERSION}"
 def  graphqlimageTag = "gcr.io/${PROJECT_ID}/cicd/graphql:${VERSION}"
 def  expressimageTag = "gcr.io/${PROJECT_ID}/cicd/express:${VERSION}"
 def  namespace = "palo-alto-demo"
@@ -17,7 +17,7 @@ pipeline {
     stage('Build Docker Images') {
       steps {
               //Build python flask application image
-              sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/pyflask -t ${pyflaskimageTag}"
+              sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/node-sfdc -t ${sfdcimageTag}"
               //Build graphql image
               sh "PYTHONUNBUFFERED=1 sudo docker build ./microservices/node-graphql -t ${graphqlimageTag}"
               //Build customer image
@@ -26,7 +26,7 @@ pipeline {
     }
     stage('Push Docker Image to GCR'){
       steps {
-              sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${pyflaskimageTag} "
+              sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${sfdcimageTag} "
               sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${graphqlimageTag}"
               sh "PYTHONBUFFERED=1 sudo gcloud docker -- push ${expressimageTag}"
        }
