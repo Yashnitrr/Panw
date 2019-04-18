@@ -1,44 +1,37 @@
 const express = require('express');
+const morgan = require('morgan');
+const config = require('./config/config');
 const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
-const request = require('request');
+const defaultSchema = require('./schema/schema');
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-  type Query {
-    express: String
-    ping: String
-  }
-`);
+var schema = buildSchema(defaultSchema);
+
+// import required controllers
+const { ping, testExpress, user } = require('./controller');
 
 // The root provides a resolver function for each API endpoint
 var root = {
-    express: async () => {
-        try {
-            let resp = await new Promise((resolve, reject) => {
-                request('http://express:3000/ping', (err, res, body) => {
-                    if (err) {
-                        return reject(err);
-                    }
-                    let message = JSON.parse(res.body)['message'];
-                    return resolve(message);
-                });
-            });
-            return resp;
-        } catch (error) {
-            return 'Error Occurred';
-        }
-    },
-    ping: () => {
-        return "Pong";
-    }
+    express: testExpress().expressPing,
+    ping: ping,
+    users: user().getAll,
+    user: user().getOne
 };
 
 var app = express();
+
+app.use(morgan('combined'));
+
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
     graphiql: true,
 }));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+
+const server = app.listen(process.env.PORT || config.PORT || 4000, () => {
+    const port = server.address().port;
+    console.log(`GraphQl Server listening on port ${port}`);
+});
+
+module.exports = server;
