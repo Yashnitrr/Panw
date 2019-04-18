@@ -35,7 +35,7 @@ pipeline {
       steps {
               sh "sudo su"
               //sh "PYTHONBUFFERED=1 sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj '/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com'"
-              //sh "PYTHONBUFFERED=1 sudo gcloud container clusters get-credentials istio-tf --region us-west1 --project palo-alto-networks-234507"
+              sh "PYTHONBUFFERED=1 sudo gcloud container clusters get-credentials istio-tf --region us-west1 --project palo-alto-networks-234507"
               //sh "PYTHONBUFFERED=1 sudo kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin"
               //sh "PYTHONBUFFERED=1 sudo kubectl delete namespace palo-alto-demo"
               //sh "PYTHONBUFFERED=1 sudo kubectl create namespace palo-alto-demo"
