@@ -1,20 +1,20 @@
 {
-  "name": "node-express",
+  "name": "sfdc",
   "version": "1.0.0",
-  "description": "sample express applicatin to demonstrate express capabilities",
+  "description": "Salesforce integration package",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha ./test --recursive --exit",
+    "test": "mocha ./test --recursive",
     "test-coverage": "./node_modules/.bin/nyc npm test"
   },
   "author": "Nilay Kamat",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "morgan": "^1.9.1",
-    "redis": "^2.8.0"
+    "jsforce": "^1.9.1",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
