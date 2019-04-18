@@ -34,12 +34,12 @@ pipeline {
     stage('Deploy on GKE'){
       steps {
               sh "sudo su"
-              sh "PYTHONBUFFERED=1 sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj '/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com'"
-              sh "PYTHONBUFFERED=1 sudo gcloud container clusters get-credentials cicd-panw --zone us-west1-b --project palo-alto-networks-234507"
+              //sh "PYTHONBUFFERED=1 sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/tls.crt -keyout /etc/tls.key -subj '/C=US/ST=California/L=San Francisco/O=Global Security/OU=IT Department/CN=agrawaly@google.com'"
+              //sh "PYTHONBUFFERED=1 sudo gcloud container clusters get-credentials istio-tf --region us-west1 --project palo-alto-networks-234507"
               //sh "PYTHONBUFFERED=1 sudo kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin"
-              sh "PYTHONBUFFERED=1 sudo kubectl delete namespace palo-alto-demo"
-              sh "PYTHONBUFFERED=1 sudo kubectl create namespace palo-alto-demo"
-              sh "PYTHONBUFFERED=1 sudo kubectl create -n palo-alto-demo secret tls istio-ingressgateway-certs --key /etc/tls.key --cert /etc/tls.crt"
+              //sh "PYTHONBUFFERED=1 sudo kubectl delete namespace palo-alto-demo"
+              //sh "PYTHONBUFFERED=1 sudo kubectl create namespace palo-alto-demo"
+              //sh "PYTHONBUFFERED=1 sudo kubectl create -n palo-alto-demo secret tls istio-ingressgateway-certs --key /etc/tls.key --cert /etc/tls.crt"
               //sh "PYTHONBUFFERED=1 sudo kubectl label namespace default istio-injection=enabled"
               //sh "PYTHONBUFFERED=1 sudo kubectl label namespace palo-alto-demo istio-injection=enabled"
               sh "PYTHONBUFFERED=1 sudo kubectl apply -f deployment.yaml"
