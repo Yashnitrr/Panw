@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha ./test --recursive",
-    "test-coverage": "./node_modules/.bin/nyc npm test"
+    "test-coverage": "./node_modules/.bin/nyc --reporter=cobertura npm test"
   },
   "author": "Nilay Kamat",
   "license": "ISC",
