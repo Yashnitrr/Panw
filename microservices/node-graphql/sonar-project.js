@@ -4,7 +4,7 @@ sonarqubeScanner({
   options : {
   'sonar.sources': '.',
   'sonar.inclusions': './**',
-  'sonar.tests': 'test/*',
+  'sonar.tests': '/home/jenkins/workspace/microservices-demo/microservices/node-graphql/test/*',
   'sonar.exclusions': 'node_modules/*,coverage/*',
   'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info',
   'sonar.language': 'js',
