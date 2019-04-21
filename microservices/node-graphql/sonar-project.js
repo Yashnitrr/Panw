@@ -4,9 +4,9 @@ sonarqubeScanner({
   options : {
   'sonar.sources': '.',
   'sonar.inclusions': './**',
-  'sonar.tests': './test/*',
-  'sonar.exclusions': './node_modules/*,./coverage/*',
-  'sonar.javascript.lcov.reportPaths': './coverage/lcov.info',
+  'sonar.tests': 'test/*',
+  'sonar.exclusions': 'node_modules/*,coverage/*',
+  'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info',
   'sonar.language': 'js',
   'sonar.sourceEncoding': 'UTF-8',
   'sonar.projectKey': 'node-graphql',
