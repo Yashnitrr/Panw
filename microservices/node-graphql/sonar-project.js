@@ -3,7 +3,7 @@ sonarqubeScanner({
   serverUrl: 'http://104.196.201.144:9000',
   options : {
   'sonar.sources': '.',
-  'sonar.inclusions': 'packages/core/src/**',
+  'sonar.inclusions': './**',
   'sonar.tests': './test/*',
   'sonar.exclusions': './node_modules/*,./coverage/*',
   'sonar.javascript.lcov.reportPaths': './coverage/lcov.info',
